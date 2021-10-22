@@ -12,7 +12,7 @@ try{
 	String dbId = "root";
 	String dbPass = "1234";
 	
-// 	Class.forName("com.mysql.jdbc.Driver");
+ 	Class.forName("com.mysql.jdbc.Driver");
 	conn=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
 	out.println("제대로 연결되었습니다.");
 }
