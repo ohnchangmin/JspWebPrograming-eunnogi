@@ -18,7 +18,7 @@ try{
 	String dbId = "jspid";
 	String dbPass = "jsppass";
 	
-	Class.forName("com.mysql.jdbc.cj.Driver");
+	Class.forName("com.mysql.cj.jdbc.Driver");
 	conn=DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 	
 	String sql = "select id, passwd from member where id=?";
@@ -29,6 +29,7 @@ try{
 	if(rs.next()){
 		String rId = rs.getString("id");
 		String rPasswd = rs.getString("passwd");
+		
 		if(id.equals(rId) && passwd.equals(rPasswd)){
 			sql = "update member set name= ? where id = ?";
 			pstmt = conn.prepareStatement(sql);
@@ -48,21 +49,24 @@ try{
 </html>
 
 <%
+		}
+		else
+			out.println("패스워드가 틀렸습니다");
+		
 	}
-	else
-		out.print("패스워드가 틀렸습니다");
 	else
 		out.println("아이디가 틀렸습니다.");
-	}
-	catch(Exception e){
+	
+	}catch(Exception e){
 		e.printStackTrace();
 	}
-	finally{
+	finally
+	{
 		if(rs != null)
-			try{rs.close();}catch(SQLException){}
+			try{rs.close();}catch(SQLException sqle){}
 		if(pstmt != null)
-			try{pstmt.close();}catch(SQLException){}
+			try{pstmt.close();}catch(SQLException sqle){}
 		if(conn != null)
-			try{conn.close();}catch(SQLException){}
+			try{conn.close();}catch(SQLException sqle){}
 	}
 %>
