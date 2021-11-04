@@ -54,8 +54,7 @@ public class BoardDBBean {
 				number = 1;
 			
 			if(num!=0) {
-				sql = "update board set re_step = re_step+1";
-				sql += "where ref = ? and re_step > ?";
+				sql = "update board set re_step = re_step+1 where ref = ? and re_step > ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, ref);
 				pstmt.setInt(2, re_step);
@@ -69,8 +68,8 @@ public class BoardDBBean {
 				re_level = 0;
 			}
 			
-			sql = "insert into board(wirter, email, subject, passwd, reg_date, ref, re_step, re_level, content, ip)";
-			sql += "values(?,?,?,?,?,?,?,?,?,?)";
+			sql = "insert into board(writer, email, subject, passwd, reg_date, ref, re_step, re_level, content, ip)";
+			sql += " values(?,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, article.getWriter());
 			pstmt.setString(2, article.getEmail());
