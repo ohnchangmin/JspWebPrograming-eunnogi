@@ -128,11 +128,18 @@
 		if(endPage > pageCount)
 			endPage = pageCount;
 		if(startPage > 10){%>
-		<a href="list.jsp?pageNum=<%=startPage - 10%>">[이전]</a>
+			<a href="list.jsp?pageNum=<%=startPage - 10%>">[이전]</a>
 <%		} 
 		
-		for(int i=startPage; i<=endPage; i++){%>
-		<a href="list.jsp?pageNum=<%=startPage + 10%>">[다음]</a>
+		for(int i=startPage; i<=endPage; i++){
+%>
+			<a href="list.jsp?pageNum=<%=i%>">[<%=i%>]</a>
+			
+<%		}
+		
+		if(endPage < pageCount){
+%>
+			<a href="list.jsp?pageNum=<%=startPage + 10%>">[다음]</a>
 <%
 		}
 	}
