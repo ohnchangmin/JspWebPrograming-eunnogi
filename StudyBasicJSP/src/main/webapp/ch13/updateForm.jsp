@@ -23,7 +23,7 @@
 
 <p>글수정</p>
 <br>
-<form action="updatePro.jsp?pageNum=<%=pageNum%>" method="post" name="writform" onsubmit="return writeSave()">
+<form action="updatePro.jsp?pageNum=<%=pageNum%>" method="post" name="writeform" onsubmit="return writeSave()">
 	<table>
 		<tr>
 			<td width="70" bgcolor="<%=value_c%>" align="center">이름</td>
