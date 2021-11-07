@@ -20,7 +20,7 @@
 %>
 		<script type="text/javascript">
 		<!-- 
-		alter("비밀번호가 맞지 않습니다.");
+		alert("비밀번호가 맞지 않습니다.");
 		history.go(-1);
  		-->
  		</script>
