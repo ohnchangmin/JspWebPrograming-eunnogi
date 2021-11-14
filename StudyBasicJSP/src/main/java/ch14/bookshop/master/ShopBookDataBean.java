@@ -12,7 +12,7 @@ public class ShopBookDataBean {
 	private String author;			//저자
 	private String publishing_com;	//출판사
 	private String publishing_date;	//출판일
-	private String book_img;		//책 이미지명
+	private String book_image;		//책 이미지명
 	private String book_content;	//책의 내용
 	private byte discount_rate;		//책의 할인율
 	private Timestamp reg_date;		//책의 등록날짜
@@ -65,11 +65,11 @@ public class ShopBookDataBean {
 	public void setPublishing_date(String publishing_date) {
 		this.publishing_date = publishing_date;
 	}
-	public String getBook_img() {
-		return book_img;
+	public String getBook_image() {
+		return book_image;
 	}
-	public void setBook_img(String book_img) {
-		this.book_img = book_img;
+	public void setBook_image(String book_img) {
+		this.book_image = book_img;
 	}
 	public String getBook_content() {
 		return book_content;
