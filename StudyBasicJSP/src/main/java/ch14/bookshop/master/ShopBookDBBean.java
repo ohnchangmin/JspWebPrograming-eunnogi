@@ -279,4 +279,44 @@ public class ShopBookDBBean {
 		}
 		return book;
 	}
+	
+	/* 등록된 책의 정보를 수정시 사용하는 메소드 */
+	public void updateBook(ShopBookDataBean book, int bookId) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			conn = getConnection();
+	
+			sql = "update book set book_kind=?, book_title=?, book_price=?";
+			sql += ", book_count=?, author=?, publishing_com=?, publishing_date=?";
+			sql += ", book_image=?, book_content=?, discount_rate=? where book_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, book.getBook_kind());
+			pstmt.setString(2, book.getBook_title());
+			pstmt.setInt(3, book.getBook_price());
+			pstmt.setShort(4, book.getBook_count());
+			pstmt.setString(5, book.getAuthor());
+			pstmt.setString(6, book.getPublishing_com());
+			pstmt.setString(7, book.getPublishing_date());
+			pstmt.setString(8, book.getBook_image());
+			pstmt.setString(9, book.getBook_content());
+			pstmt.setByte(10, book.getDiscount_rate());
+			pstmt.setInt(11, bookId);
+			
+			pstmt.executeUpdate();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally{
+			if(pstmt != null) {
+				try {pstmt.close();}catch(SQLException ex){}
+
+			if(conn != null)
+				try {conn.close();}catch(SQLException ex){}
+			}
+		}
+	}
 }
