@@ -319,4 +319,31 @@ public class ShopBookDBBean {
 			}
 		}
 	}
+	
+	/* bookId에 해당하는 책의 정보를 삭제시 사용하는 메소드 */
+	public void deleteBook(int bookId) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+				
+			pstmt = conn.prepareStatement("delete from book where book_id=?");
+			pstmt.setInt(1, bookId);
+			
+			pstmt.executeUpdate();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if(rs != null)
+				try {rs.close();} catch(SQLException ex) {}
+			if(pstmt != null)
+				try {pstmt.close();} catch(SQLException ex) {}
+			if(conn != null)
+				try {conn.close();} catch(SQLException ex) {}
+		}
+	}
+	
 }
