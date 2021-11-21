@@ -75,7 +75,7 @@ public class ShopBookDBBean {
 		try {
 			conn = getConnection();
 			
-			pstmt = conn.prepareStatement("insert into book values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			pstmt = conn.prepareStatement("insert into book values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setInt(1, book.getBook_id());
 			pstmt.setString(2, book.getBook_kind());
 			pstmt.setString(3, book.getBook_title());
