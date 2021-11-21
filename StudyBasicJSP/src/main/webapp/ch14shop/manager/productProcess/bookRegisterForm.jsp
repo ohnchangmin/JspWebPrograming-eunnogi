@@ -119,7 +119,7 @@
 			<tr>
 				<td width="100" bgcolor="<%=value_c%>">할인율</td>
 				<td width="400" align="left">
-					<input type="text" size="5" maxlength="2" name="discount_rate">
+					<input type="text" size="5" maxlength="2" name="discount_rate">%
 				</td>
 			</tr>
 			<tr>

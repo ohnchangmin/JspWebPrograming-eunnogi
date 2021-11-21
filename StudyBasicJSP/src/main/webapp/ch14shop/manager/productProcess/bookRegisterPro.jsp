@@ -40,7 +40,7 @@
 	}
 %>
 
-<jsp:useBean id="book" scope="page" class=ch14.bookshop.master.ShopBookDataBean></jsp:useBean>
+<jsp:useBean id="book" scope="page" class="ch14.bookshop.master.ShopBookDataBean"></jsp:useBean>
 
 <%
 	String book_kind = imageUp.getParameter("book_kind");
