@@ -1,51 +1,54 @@
 package ch14.bookshop.shopping;
 
-import java.sql.Timestamp;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 public class CustomerDBBean {
-	private String id;			//아이디
-	private String passwd;		//비밀번호
-	private String name;		//이름
-	private Timestamp reg_date;	//가입일자
-	private String tel;			//전화번호
-	private String address;		//주소
+
+	private static CustomerDBBean instance = new CustomerDBBean();
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getPasswd() {
-		return passwd;
-	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Timestamp getReg_date() {
-		return reg_date;
-	}
-	public void setReg_date(Timestamp reg_date) {
-		this.reg_date = reg_date;
-	}
-	public String getTel() {
-		return tel;
-	}
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
+	public static CustomerDBBean getInstance() {
+		return instance;
 	}
 	
+	private CustomerDBBean() {}
 	
+	private Connection getConnection() throws Exception{
+		Context initCtx = new InitialContext();
+		Context envCtx = (Context)initCtx.lookup("java:comp/env");
+		DataSource ds = (DataSource)envCtx.lookup("jdbc/basicjsp");
+		return ds.getConnection();
+	}
+	
+	/* 회원가입 */
+	public void insertMember(CustomerDataBean member) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = getConnection();
+			
+			pstmt = conn.prepareStatement("insert into member values(?, ?, ?, ?, ?, ?)");
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getPasswd());
+			pstmt.setString(3, member.getName());
+			pstmt.setTimestamp(4, member.getReg_date());
+			pstmt.setString(5, member.getTel());
+			pstmt.setString(6, member.getAddress());
+			
+			pstmt.executeUpdate();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally {
+			if(pstmt!=null)
+				try {pstmt.close();}catch(SQLException sqle){}
+			if(conn!=null)
+				try {conn.close();}catch(SQLException sqle){}
+		}
+	}
 }
