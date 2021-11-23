@@ -264,8 +264,8 @@ public class ShopBookDBBean {
 				book.setPublishing_com(rs.getString("publishing_com"));
 				book.setPublishing_date(rs.getString("publishing_date"));
 				book.setBook_image(rs.getString("book_image"));
+				book.setBook_content(rs.getString("book_content"));
 				book.setDiscount_rate(rs.getByte("discount_rate"));
-				book.setReg_date(rs.getTimestamp("book_reg_date"));
 			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
